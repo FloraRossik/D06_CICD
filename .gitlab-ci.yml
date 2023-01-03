@@ -1,0 +1,71 @@
+stages:
+  - build
+  - style
+  - tests
+  - deploy 
+  - notification
+
+building:
+    stage: build
+    tags:
+      - run
+    script:
+      - cd src/cat
+      - make
+      - cd ../grep
+      - make
+    artifacts:
+      paths:
+        - src/cat/s21_cat
+        - src/grep/s21_grep
+      expire_in: 30 days
+
+styling:
+    stage: style
+    tags:
+      - run
+    script:
+      - cd src/cat
+      - make style
+      - cd ../grep
+      - make style
+
+testing:
+    stage: tests
+    tags:
+      - run
+    script:
+      - cd src/cat
+      - bash s21_cat_tests.sh
+      - cd ../grep
+      - bash s21_grep_tests.sh
+    when: on_success
+
+
+deploy_job:
+  stage: deploy
+  tags:
+    - run
+  script:
+    - cd src/cat
+    - scp s21_cat  user_2@192.168.170.120:/usr/local/bin/
+    - cd ../grep
+    - scp s21_grep user_2@192.168.170.120:/usr/local/bin/
+  when: manual
+  when: on_success
+
+cd_success:
+  stage: notification
+  tags:
+    - run
+  script:
+    - ./boot_success.sh
+  when: on_success
+
+cd_failure:
+  stage: notification
+  tags:
+    - run
+  script:
+    - ./boot_fail.sh
+  when: on_failure

@@ -1,0 +1,8 @@
+m\|match
+son|ing
+h.llo
+^f.le
+out$
+el{3}
+
+

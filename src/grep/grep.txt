@@ -1,0 +1,34 @@
+-e  --regexp=PATTERNS   
+              Use  PATTERNS  as  the  patterns.   If this option is used multiple times or is combined with the -f (--file) option, search for all patterns
+              given.  This option can be used to protect a pattern beginning with “-”.
+
+-i  --ignore-case
+              Ignore case distinctions in patterns and input data, so that characters that differ only in case match each other.
+
+-v  --invert-match
+              Invert the sense of matching, to select non-matching lines.
+
+-c  --count
+              Suppress normal output; instead print a count of matching lines for each input file.  With the -v, --invert-match option (see  below),  count
+              non-matching lines.
+
+-l  --files-with-matches
+              Suppress normal output; instead print the name of each input file from which output would normally have been printed.   Scanning  each  input
+              file stops upon first match.
+
+-n  --line-number
+              Prefix each line of output with the 1-based line number within its input file.
+
+-h  --no-filename
+              Suppress the prefixing of file names on output.  This is the default when there is only one file (or only standard input) to search.
+
+-s  --no-messages
+              Suppress error messages about nonexistent or unreadable files.
+
+-f  --file=FILE
+              Obtain patterns from FILE, one per line.  If this option is used multiple times or is combined with the -e (--regexp) option, search for  all
+              patterns given.  The empty file contains zero patterns, and therefore matches nothing.
+
+-o  --only-matching
+              Print only the matched (non-empty) parts of a matching line, with each such part on a separate output line.
+
